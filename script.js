@@ -19,11 +19,11 @@ function searchWeather(searchTerm) {
     })
     .then(result => {
       // calling function with results from server
-      init(result);
+      primaryInit(result);
     })
 }
 
-function init(resultFromServer) {
+function primaryInit(resultFromServer) {
   switch(resultFromServer.weather[0].main) {
     case 'Clear':
       document.body.style.backgroundImage = 'url("clear.jpg")';
@@ -59,7 +59,7 @@ function init(resultFromServer) {
   let humidityElement = document.getElementById('humidity');
 
   cityHeader.innerHTML = resultFromServer.name;
-  temperatureElement.innerHTML = Math.floor(resultFromServer.main.temp) + '°'; 
+  temperatureElement.innerHTML = Math.floor(resultFromServer.main.temp) + '&deg;'; 
   let resultDescription = resultFromServer.weather[0].description;
   weatherDescriptionHeader.innerText = resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
   weatherIcon.src = 'http://openweathermap.org/img/w/' + resultFromServer.weather[0].icon + '.png';
